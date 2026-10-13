@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Check, Sparkles, Users, CheckCircle2 } from "lucide-react";
-import candidateExperience from "./assets/images/candid_candidate_experience_1791869817951.jpg";
-import workplaceCulture from "./assets/images/candid_workplace_culture_1791869797749.jpg";
+import candidateExperience from "../assets/images/candid_candidate_experience_1791869817951.jpg";
+import workplaceCulture from "../assets/images/candid_workplace_culture_1791869797749.jpg";
 
 export const ProductOverview: React.FC = () => {
   const [activeTab, setActiveTab] = useState<
