@@ -1,0 +1,6 @@
+{
+  "name": "Candid HR",
+  "description": "Human-centric recruitment platform homepage combining authentic workplace culture with intelligent candidate sourcing, screening, and shortlisting.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
