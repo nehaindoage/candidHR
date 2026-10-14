@@ -1,0 +1,95 @@
+import React, { useState } from 'react';
+import { Routes, Route, Navigate, useParams } from 'react-router-dom'; // <-- Import Routes and Route
+import { Navbar } from './components/Navbar';
+import { Footer } from './components/Footer';
+import { BookDemoModal } from './components/BookDemoModal';
+
+// Import your pages
+import Home from './pages/Home';
+import Home1 from './pages/Home1';
+import Home2 from './pages/Home2';
+import DynamicSlugPage from './pages/DynamicSlugPage';
+import Services from './pages/Services';
+import FeaturePage from './pages/FeaturePage';
+import SolutionPage from './pages/SolutionPage';
+import WhoWeAre from './pages/WhoWeAre';
+import JoinTeam from './pages/JoinTeam';
+import Integrations from './pages/Integrations';
+import Pricing from './pages/Pricing';
+import ContactUs from './pages/ContactUs';
+import BookDemo from './pages/BookDemo';
+import Rebranding from './pages/Rebranding';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import RefundPolicy from './pages/RefundPolicy';
+import TermsConditions from './pages/TermsConditions';
+import CookiesPolicy from './pages/CookiesPolicy';
+import Blogs from './pages/Blogs';
+import BlogPostPage from './pages/BlogPostPage';
+
+export default function App() {
+  const [isDemoModalOpen, setIsDemoModalOpen] = useState(false);
+
+  const handleOpenDemo = () => {
+    setIsDemoModalOpen(true);
+  };
+
+  const handleCloseDemo = () => {
+    setIsDemoModalOpen(false);
+  };
+
+  return (
+    <div className="min-h-screen flex flex-col bg-[#F8F9FB] text-[#353F4F] font-sans antialiased">
+      {/* Top Header Navigation (Persists across all pages) */}
+      <Navbar onOpenDemo={handleOpenDemo} />
+
+      {/* Main Content Area (Routes will render here) */}
+      <main className="flex-1">
+        <Routes>
+          {/* Home Route */}
+          {/* <Route path="/" element={<Home onOpenDemo={handleOpenDemo} />} /> */}
+          <Route path="/services" element={<Services onOpenDemo={handleOpenDemo} />} />
+          <Route path="/:slug" element={<DynamicSlugPage onOpenDemo={handleOpenDemo} />} />
+          <Route path="/services/:slug" element={<OldServiceRedirect />} />
+          <Route path="/features/:slug" element={<FeaturePage onOpenDemo={handleOpenDemo} />} />
+          <Route path="/solutions/:slug" element={<SolutionPage onOpenDemo={handleOpenDemo} />} />
+          <Route path="/who-we-are" element={<WhoWeAre onOpenDemo={handleOpenDemo} />} />
+          <Route path="/join-the-team" element={<JoinTeam onOpenDemo={handleOpenDemo} />} />
+          <Route path="/integrations" element={<Integrations onOpenDemo={handleOpenDemo} />} />
+          <Route path="/pricing" element={<Pricing onOpenDemo={handleOpenDemo} />} />
+          <Route path="/contact-us" element={<ContactUs onOpenDemo={handleOpenDemo} />} />
+          <Route path="/book-a-demo" element={<BookDemo onOpenDemo={handleOpenDemo} />} />
+          <Route path="/rebranding" element={<Rebranding onOpenDemo={handleOpenDemo} />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy onOpenDemo={handleOpenDemo} />} />
+          <Route path="/refund-policy" element={<RefundPolicy onOpenDemo={handleOpenDemo} />} />
+          <Route path="/terms-condition" element={<TermsConditions onOpenDemo={handleOpenDemo} />} />
+          <Route path="/terms-conditions" element={<TermsConditions onOpenDemo={handleOpenDemo} />} />
+          <Route path="/cookies-policy" element={<CookiesPolicy onOpenDemo={handleOpenDemo} />} />
+          <Route path="/blog" element={<Blogs onOpenDemo={handleOpenDemo} />} />
+          <Route path="/blog/:slug" element={<BlogPostPage />} />
+        
+        <Route path="/" element={<Home1 onOpenDemo={handleOpenDemo} />} />
+          <Route path="/home2" element={<Home2 onOpenDemo={handleOpenDemo} />} /> 
+          
+          {/* Example of how to add more routes later: */}
+          {/* <Route path="/about" element={<About onOpenDemo={handleOpenDemo} />} /> */}
+          {/* <Route path="/features" element={<Features onOpenDemo={handleOpenDemo} />} /> */}
+        </Routes>
+      </main>
+
+      {/* Enterprise Footer (Persists across all pages) */}
+      <Footer />
+
+      {/* Interactive Demo / Sandbox Booking Modal (Persists across all pages) */}
+      <BookDemoModal 
+        isOpen={isDemoModalOpen} 
+        onClose={handleCloseDemo} 
+      />
+    </div>
+  );
+}
+
+// 301-style forward for the old /services/<slug> URLs.
+function OldServiceRedirect() {
+  const { slug } = useParams();
+  return <Navigate to={`/${slug ?? ''}`} replace />;
+}
