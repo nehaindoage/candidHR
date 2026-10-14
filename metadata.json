@@ -1,6 +1,11 @@
 {
+<<<<<<< HEAD
   "name": "Netzur | Next-Gen ISP Billing & Internet Management",
   "description": "Enterprise-grade billing, subscriber management, and network operations platform for modern Fiber, Wireless, and Municipal ISPs.",
+=======
+  "name": "Candid HR",
+  "description": "Human-centric recruitment platform homepage combining authentic workplace culture with intelligent candidate sourcing, screening, and shortlisting.",
+>>>>>>> fork/main
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

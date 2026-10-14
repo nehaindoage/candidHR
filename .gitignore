@@ -5,4 +5,8 @@ coverage/
 .DS_Store
 *.log
 .env*
+<<<<<<< HEAD
 .env.example
+=======
+!.env.example
+>>>>>>> fork/main

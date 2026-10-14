@@ -4,6 +4,10 @@
     "experimentalDecorators": true,
     "useDefineForClassFields": false,
     "module": "ESNext",
+<<<<<<< HEAD
+=======
+    "types": ["vite/client"],
+>>>>>>> fork/main
     "lib": [
       "ES2022",
       "DOM",
