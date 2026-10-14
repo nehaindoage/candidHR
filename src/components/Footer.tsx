@@ -42,16 +42,16 @@ export const Footer: React.FC = () => {
 
             {/* Social Media Links */}
             <div className="pt-2 flex items-center gap-3">
-              <a href="https://www.facebook.com/netzur" target="_blank" aria-label="Facebook" className="w-8 h-8 rounded-lg bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-600 hover:text-[#F13B0A] transition-colors">
+              <a href="#" target="_blank" aria-label="Facebook" className="w-8 h-8 rounded-lg bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-600 hover:text-[#F13B0A] transition-colors">
                 <Facebook className="w-4 h-4" />
               </a>
-              <a href="https://x.com/netzurnetworks" target="_blank" aria-label="X (Twitter)" className="w-8 h-8 rounded-lg bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-600 hover:text-[#F13B0A] transition-colors">
+              <a href="#" target="_blank" aria-label="X (Twitter)" className="w-8 h-8 rounded-lg bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-600 hover:text-[#F13B0A] transition-colors">
                 <Twitter className="w-4 h-4" />
               </a>
-              <a href="https://www.linkedin.com/company/netzur-imbs" target="_blank" aria-label="LinkedIn" className="w-8 h-8 rounded-lg bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-600 hover:text-[#F13B0A] transition-colors">
+              <a href="#" target="_blank" aria-label="LinkedIn" className="w-8 h-8 rounded-lg bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-600 hover:text-[#F13B0A] transition-colors">
                 <Linkedin className="w-4 h-4" />
               </a>
-              <a href="https://www.instagram.com/netzur.networks17" target="_blank" aria-label="Instagram" className="w-8 h-8 rounded-lg bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-600 hover:text-[#F13B0A] transition-colors">
+              <a href="#" target="_blank" aria-label="Instagram" className="w-8 h-8 rounded-lg bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-600 hover:text-[#F13B0A] transition-colors">
                 <Instagram className="w-4 h-4" />
               </a>
             </div>

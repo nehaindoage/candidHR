@@ -7,7 +7,7 @@ interface CustomerSpotlightProps {
 
 export const CustomerSpotlight: React.FC<CustomerSpotlightProps> = ({ onOpenDemo }) => {
   return (
-    <section className="bg-white text-slate-900 py-20 relative overflow-hidden font-sans">
+    <section id="results" className="bg-white text-slate-900 py-20 relative overflow-hidden font-sans">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Split Grid: Left Text | Right Image Gallery */}
