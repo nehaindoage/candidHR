@@ -1,11 +1,12 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import { ArrowRight, Play, Bot, Gauge, Users, Megaphone, Link2, Mail, ShieldCheck, Sparkles, Search, FileText, ClipboardCheck, Video, ListOrdered, Plus, Minus, Quote } from "lucide-react";
+import { ArrowRight, Play, Bot, Gauge, Users, Megaphone, Link2, Mail, ShieldCheck, Sparkles, Search, FileText, ClipboardCheck, Video, ListOrdered, Plus, Minus, Quote,Clock,Phone,CircleX ,Zap} from "lucide-react";
 import logo from "@/assets/logo_HR.png";
 import heroImg from "@/assets/hero_recruiter_leader.jpg"
 import corePlatform from "@/assets/candidhr_core_platform.mp4"
 import howWorks from "@/assets/candidhr_how_it_works.mp4"
 import walkThrough from "@/assets/candidhr_applicants_walkthrough.mp4"
 import { LOGOS, ATS, BOARDS, RESULTS, TEAMS, PLANS, FAQ } from "./data";
+import { Button } from "../ui/button";
 
 const HERO_IMG = heroImg;
 
@@ -178,47 +179,157 @@ function Logos() {
     </section>
   );
 }
+const steps = [
+  { icon: FileText, before: "Write the job description from scratch", after: "AI drafts the job description, you approve it", team: true },
+  { icon: Clock, before: "Post the job and wait", after: "Auto-invite top talent from the 2 Billion+ talent pool", team: false },
+  { icon: FileText, before: "Open 500+ resumes one by one", after: "AI matches every resume to the role", team: false },
+  { icon: Phone, before: "Schedule phone screens, chase no-shows", after: "Proctored technical & aptitude tests", team: false },
+  { icon: Mail, before: "Email tests and check submissions", after: "Video interviews transcribed & analysed", team: false },
+  { icon: Phone, before: "Run repetitive intro calls", after: "Ranked shortlist with hiring evidence", team: false },
+  { icon: CircleX, before: "Discover the candidate wasn't qualified", after: "Your recruiters interview the best", team: true },
+];
 
 function HowItWorks() {
-  const manual = ["Write the job description from scratch", "Post the job and wait", "Open 500+ resumes one by one", "Schedule phone screens, chase no-shows", "Email tests and check submissions", "Run repetitive intro calls", "Discover the candidate wasn't qualified"];
-  const auto = [["AI drafts the job description", "Your team"], ["Auto-invite top talent from 2B+ pool", "Automated"], ["AI matches every resume to the role", "Automated"], ["Proctored technical & aptitude tests", "Automated"], ["Video interviews transcribed & analysed", "Automated"], ["Ranked shortlist with hiring evidence", "Automated"], ["Your recruiters interview the best", "Your team"]];
+  const [activeRow, setActiveRow] = useState<number | null>(null);
+  const [entered, setEntered] = useState(false);
+  const boardRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const board = boardRef.current;
+    if (!board) return;
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry?.isIntersecting) {
+        setEntered(true);
+        observer.disconnect();
+      }
+    }, { threshold: 0.12 });
+    observer.observe(board);
+    return () => observer.disconnect();
+  }, []);
   return (
-    <section id="how-it-works" className="bg-surface py-24">
+    <section id="how-it-works" className={`hiring-workflow bg-surface py-20 md:py-24 ${entered ? "workflow-entered" : ""}`} aria-labelledby="workflow-title">
       <div className="mx-auto max-w-[1240px] px-6">
-        <Head eyebrow="How it works" title={<>Who does what, from <span className="text-violet">job created to hire</span></>} lead="Your team owns both ends. Everything in between runs on its own." />
-        <div className="grid gap-6 lg:grid-cols-[1fr_1.3fr]">
-          <Reveal className="rounded-3xl border border-border bg-card p-8">
-            <div className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Without CandidHR.ai</div>
-            <ul className="mt-6 space-y-3">
-              {manual.map((m) => (
-                <li key={m} className="flex items-center gap-3 text-[15px] text-muted-foreground line-through decoration-border">
-                  <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-warn" /> {m}
-                </li>
-              ))}
-            </ul>
-          </Reveal>
-          <Reveal delay={0.1} className="relative overflow-hidden rounded-3xl bg-ink p-8 text-ink-foreground shadow-lift">
-            <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-violet/40 blur-3xl" />
-            <div className="relative text-xs font-bold uppercase tracking-widest text-teal">With CandidHR.ai</div>
-            <ol className="relative mt-6 space-y-2">
-              {auto.map(([t, tag], k) => (
-                <li key={t} className="flex items-center gap-4 rounded-xl border border-ink-foreground/10 bg-ink-foreground/5 px-4 py-3">
-                  <span className="text-xs font-bold text-ink-foreground/50">0{k + 1}</span>
-                  <span className="flex-1 text-[15px] font-semibold">{t}</span>
-                  <span className={`rounded-full px-2.5 py-1 text-[11px] font-bold ${tag === "Automated" ? "bg-teal/20 text-teal" : "bg-ink-foreground/15 text-ink-foreground"}`}>{tag}</span>
-                </li>
-              ))}
-            </ol>
-          </Reveal>
+        <div className="mb-12 flex flex-wrap items-end justify-between gap-8">
+          <div className="max-w-3xl">
+          <span className="eyebrow workflow-eyebrow">How it works</span>
+          <h2 id="workflow-title" className="mt-4 text-4xl font-extrabold leading-[1.08] text-ink md:text-5xl">Who does what, <span className="text-violet">from job created to hire</span></h2>
+          <p className="mt-4 max-w-2xl text-[17px] leading-relaxed text-muted-foreground">Your team owns both ends: approving the job and the final interviews. Steps 2 to 6 run on their own.</p>
+          </div>
+          <Button asChild className="h-auto min-h-12 whitespace-normal rounded-lg px-5 py-3 text-left text-sm font-bold"><a href="#demo">See it on your own job <ArrowRight aria-hidden="true" /></a></Button>
+        </div>
+        <div ref={boardRef} className="workflow-board">
+          <div className="workflow-backdrop workflow-auto-backdrop" aria-hidden="true" />
+          <div className="workflow-columns workflow-heading">
+            <div className="workflow-manual-heading">
+              <p className="text-xs font-extrabold uppercase tracking-widest text-muted-foreground">Without CandidHR.ai</p>
+              <h3 className="mt-2 text-[22px] font-extrabold text-ink">Every step is manual</h3>
+            </div>
+            <div className="workflow-auto-heading">
+              <p className="text-xs font-extrabold uppercase tracking-widest text-teal">With CandidHR.ai</p>
+              <h3 className="mt-2 text-[22px] font-extrabold text-ink-foreground">Your team does 2 of 7 steps</h3>
+            </div>
+          </div>
+          <ol className="workflow-steps">
+            {steps.map(({ icon: Icon, before, after, team }, index) => (
+              <li key={after} className={`workflow-columns workflow-row ${activeRow === index ? "is-active" : ""}`} onMouseEnter={() => setActiveRow(index)} onMouseLeave={() => setActiveRow(null)}>
+                <div className={`workflow-before ${index === 6 ? "workflow-waste" : ""}`}>
+                  <span className="workflow-before-icon"><Icon className="h-4 w-4" aria-hidden="true" /></span>
+                  <span className="workflow-strike">{before}</span>
+                </div>
+                <div className={`workflow-after ${team ? "workflow-team" : ""}`}>
+                  <span className="workflow-number">0{index + 1}</span>
+                  <span className="workflow-step-text">{after}<small className="workflow-mobile-before">Before: <span className="workflow-strike">{before}</span></small></span>
+                  <span className={`workflow-owner ${team ? "owner-team" : "owner-auto"}`}>{team ? <Users aria-hidden="true" /> : <Zap aria-hidden="true" />}{team ? "Your team" : "Automated"}</span>
+                </div>
+              </li>
+            ))}
+          </ol>
+          <div className="workflow-columns workflow-summary">
+            <div className="workflow-manual-summary"><div className="workflow-bar workflow-manual-bar" /><p><span className="workflow-key manual-key" />Manual · 7 of 7 steps</p></div>
+            <div className="workflow-auto-summary"><div className="workflow-bar workflow-auto-bar"><span /><span /><span /></div><div className="workflow-legend"><p><span className="workflow-key team-key" />Your team · 2 steps</p><p><span className="workflow-key auto-key" />Automated · 5 steps</p></div></div>
+          </div>
         </div>
       </div>
     </section>
   );
 }
+// function HowItWorks() {
+//   const manual = ["Write the job description from scratch", "Post the job and wait", "Open 500+ resumes one by one", "Schedule phone screens, chase no-shows", "Email tests and check submissions", "Run repetitive intro calls", "Discover the candidate wasn't qualified"];
+//   const auto = [["AI drafts the job description", "Your team"], ["Auto-invite top talent from 2B+ pool", "Automated"], ["AI matches every resume to the role", "Automated"], ["Proctored technical & aptitude tests", "Automated"], ["Video interviews transcribed & analysed", "Automated"], ["Ranked shortlist with hiring evidence", "Automated"], ["Your recruiters interview the best", "Your team"]];
+//   return (
+//     <section id="how-it-works" className="bg-surface py-24">
+//       <div className="mx-auto max-w-[1240px] px-6">
+//         <Head eyebrow="How it works" title={<>Who does what, from <span className="text-violet">job created to hire</span></>} lead="Your team owns both ends. Everything in between runs on its own." />
+//         <div className="grid gap-6 lg:grid-cols-[1fr_1.3fr]">
+//           <Reveal className="rounded-3xl border border-border bg-card p-8">
+//             <div className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Without CandidHR.ai</div>
+//             <ul className="mt-6 space-y-3">
+//               {manual.map((m) => (
+//                 <li key={m} className="flex items-center gap-3 text-[15px] text-muted-foreground line-through decoration-border">
+//                   <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-warn" /> {m}
+//                 </li>
+//               ))}
+//             </ul>
+//           </Reveal>
+//           <Reveal delay={0.1} className="relative overflow-hidden rounded-3xl bg-ink p-8 text-ink-foreground shadow-lift">
+//             <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-violet/40 blur-3xl" />
+//             <div className="relative text-xs font-bold uppercase tracking-widest text-teal">With CandidHR.ai</div>
+//             <ol className="relative mt-6 space-y-2">
+//               {auto.map(([t, tag], k) => (
+//                 <li key={t} className="flex items-center gap-4 rounded-xl border border-ink-foreground/10 bg-ink-foreground/5 px-4 py-3">
+//                   <span className="text-xs font-bold text-ink-foreground/50">0{k + 1}</span>
+//                   <span className="flex-1 text-[15px] font-semibold">{t}</span>
+//                   <span className={`rounded-full px-2.5 py-1 text-[11px] font-bold ${tag === "Automated" ? "bg-teal/20 text-teal" : "bg-ink-foreground/15 text-ink-foreground"}`}>{tag}</span>
+//                 </li>
+//               ))}
+//             </ol>
+//           </Reveal>
+//         </div>
+//       </div>
+//     </section>
+//   );
+// }
 
+// function Results() {
+//   const [i, setI] = useState(0);
+//   const r = RESULTS[i]!;
+//   return (
+//     <section id="results" className="py-24">
+//       <div className="mx-auto max-w-[1240px] px-6">
+//         <div className="flex flex-wrap items-end justify-between gap-6">
+//           <Head eyebrow="Customer results" title={<>Hiring results teams <span className="text-violet">can measure</span></>} />
+//           <div className="mb-14 flex gap-2 rounded-full border border-border bg-surface p-1">
+//             {RESULTS.map((x, k) => (
+//               <button key={x.company} onClick={() => setI(k)} className={`rounded-full px-5 py-2 text-sm font-bold transition ${k === i ? "bg-ink text-ink-foreground" : "text-muted-foreground hover:text-ink"}`}>{x.company}</button>
+//             ))}
+//           </div>
+//         </div>
+//         <div key={i} className="grid gap-6 animate-in fade-in slide-in-from-bottom-4 duration-500 lg:grid-cols-[1.4fr_1fr]">
+//           <div className="relative overflow-hidden rounded-3xl border border-border bg-surface p-10">
+//             <Quote className="h-10 w-10 text-violet/30" />
+//             <h3 className="mt-4 text-3xl font-extrabold leading-tight text-ink">{r.headline}</h3>
+//             <p className="mt-5 text-lg leading-relaxed text-muted-foreground">“{r.quote}”</p>
+//             <div className="mt-8 flex items-center gap-3">
+//               <div className="grid h-11 w-11 place-items-center rounded-full bg-violet text-sm font-bold text-primary-foreground">{r.who.split(" ").map((p) => p[0]).join("")}</div>
+//               <div><div className="font-bold text-ink">{r.who}</div><div className="text-sm text-muted-foreground">{r.role}</div></div>
+//             </div>
+//           </div>
+//           <div className="grid gap-4">
+//             {r.stats.map((s, k) => (
+//               <div key={s.l} className={`flex items-center justify-between rounded-3xl p-7 ${k === 0 ? "bg-violet text-primary-foreground" : k === 1 ? "bg-teal-soft text-ink" : "border border-border bg-card text-ink"}`}>
+//                 <span className="text-sm font-semibold opacity-80">{s.l}</span>
+//                 <span className="text-4xl font-extrabold tracking-tight">{s.v}</span>
+//               </div>
+//             ))}
+//           </div>
+//         </div>
+//       </div>
+//     </section>
+//   );
+// }
 function Results() {
   const [i, setI] = useState(0);
-  const r = RESULTS[i]!;
+  const r = RESULTS[i];
+  if (!r) return null;
   return (
     <section id="results" className="py-24">
       <div className="mx-auto max-w-[1240px] px-6">
@@ -233,7 +344,6 @@ function Results() {
         <div key={i} className="grid gap-6 animate-in fade-in slide-in-from-bottom-4 duration-500 lg:grid-cols-[1.4fr_1fr]">
           <div className="relative overflow-hidden rounded-3xl border border-border bg-surface p-10">
             <Quote className="h-10 w-10 text-violet/30" />
-            <h3 className="mt-4 text-3xl font-extrabold leading-tight text-ink">{r.headline}</h3>
             <p className="mt-5 text-lg leading-relaxed text-muted-foreground">“{r.quote}”</p>
             <div className="mt-8 flex items-center gap-3">
               <div className="grid h-11 w-11 place-items-center rounded-full bg-violet text-sm font-bold text-primary-foreground">{r.who.split(" ").map((p) => p[0]).join("")}</div>
@@ -253,7 +363,6 @@ function Results() {
     </section>
   );
 }
-
 function Chip({ t }: { t: string }) {
   return <span className="shrink-0 rounded-full border border-border bg-card px-4 py-2 text-sm font-semibold text-ink shadow-soft">{t}</span>;
 }
