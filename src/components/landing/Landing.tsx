@@ -174,7 +174,7 @@ function Logos() {
       <div className="space-y-4">
         <LogoRow items={rot(0)} dur={45} />
         <LogoRow items={rot(5)} dur={55} reverse />
-        <LogoRow items={rot(10)} dur={50} />
+       
       </div>
     </section>
   );
@@ -427,27 +427,27 @@ function Teams() {
   );
 }
 
-function Pricing() {
-  return (
-    <section id="pricing" className="bg-surface py-24">
-      <div className="mx-auto max-w-[1240px] px-6">
-        <Head center eyebrow="Pricing" title={<>Plans that <span className="text-violet">scale with your hiring</span></>} lead="Try screening and video interviews on a real role for free." />
-        <div className="grid gap-6 md:grid-cols-3">
-          {PLANS.map((p, k) => (
-            <Reveal key={p.n} delay={k * 0.08} className={`relative flex flex-col rounded-3xl p-8 ${p.pop ? "bg-ink text-ink-foreground shadow-lift md:-translate-y-4" : "border border-border bg-card text-ink"}`}>
-              {p.pop && <span className="absolute right-6 top-6 rounded-full bg-teal px-3 py-1 text-xs font-bold text-ink">Most popular</span>}
-              <div className="font-bold">{p.n}</div>
-              <div className="mt-4 flex items-baseline gap-1"><span className="text-5xl font-extrabold">{p.p}</span><span className="text-sm opacity-70">{p.per}</span></div>
-              <p className="mt-3 text-sm opacity-75">{p.d}</p>
-              <ul className="mt-6 flex-1 space-y-3 text-sm">{p.f.map((f) => <li key={f} className="flex gap-2"><span className={`mt-2 h-1.5 w-1.5 shrink-0 rounded-full ${p.pop ? "bg-teal" : "bg-violet"}`} />{f}</li>)}</ul>
-              <a href="#demo" className={`mt-8 inline-flex h-12 items-center justify-center rounded-full font-bold transition hover:-translate-y-0.5 ${p.pop ? "bg-primary text-primary-foreground" : "border border-border hover:border-violet"}`}>{p.cta}</a>
-            </Reveal>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
+// function Pricing() {
+//   return (
+//     <section id="pricing" className="bg-surface py-24">
+//       <div className="mx-auto max-w-[1240px] px-6">
+//         <Head center eyebrow="Pricing" title={<>Plans that <span className="text-violet">scale with your hiring</span></>} lead="Try screening and video interviews on a real role for free." />
+//         <div className="grid gap-6 md:grid-cols-3">
+//           {PLANS.map((p, k) => (
+//             <Reveal key={p.n} delay={k * 0.08} className={`relative flex flex-col rounded-3xl p-8 ${p.pop ? "bg-ink text-ink-foreground shadow-lift md:-translate-y-4" : "border border-border bg-card text-ink"}`}>
+//               {p.pop && <span className="absolute right-6 top-6 rounded-full bg-teal px-3 py-1 text-xs font-bold text-ink">Most popular</span>}
+//               <div className="font-bold">{p.n}</div>
+//               <div className="mt-4 flex items-baseline gap-1"><span className="text-5xl font-extrabold">{p.p}</span><span className="text-sm opacity-70">{p.per}</span></div>
+//               <p className="mt-3 text-sm opacity-75">{p.d}</p>
+//               <ul className="mt-6 flex-1 space-y-3 text-sm">{p.f.map((f) => <li key={f} className="flex gap-2"><span className={`mt-2 h-1.5 w-1.5 shrink-0 rounded-full ${p.pop ? "bg-teal" : "bg-violet"}`} />{f}</li>)}</ul>
+//               <a href="#demo" className={`mt-8 inline-flex h-12 items-center justify-center rounded-full font-bold transition hover:-translate-y-0.5 ${p.pop ? "bg-primary text-primary-foreground" : "border border-border hover:border-violet"}`}>{p.cta}</a>
+//             </Reveal>
+//           ))}
+//         </div>
+//       </div>
+//     </section>
+//   );
+// }
 
 function Faq() {
   const [o, setO] = useState(0);
@@ -694,7 +694,7 @@ export function Landing() {
         <Results />
         <Integrations />
         <Teams />
-        <Pricing />
+        
         <Faq />
         <Cta />
       </main>
