@@ -1,4 +1,4 @@
-# Hireflow Results Hub
+# Hireflow Results Hub Updated
 
 https://candid-hr-ai.vercel.app/ this is my existing one so we need to chage it into these two refernces hero scetion will be not dark So we have to change alot of thing first font style manrope to plus jakarta and this design is also good but something is missing so we have get two references so we dont have to copy that we can take some section and play around on the layout more clean and professional so the first section we dont keep in dark we can switch with light one the secons section of logo we have to design like two or three rows scrolling opposite direction in one of the references we can take ATS integration & job board posting
 Connected to the tools
