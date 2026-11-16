@@ -1,16 +1,18 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import { ArrowRight, Play, Bot, Gauge, Users, Megaphone, Link2, Mail, ShieldCheck, Sparkles, Search, FileText, ClipboardCheck, Video, ListOrdered, Plus, Minus, Quote,Clock,Phone,CircleX ,Zap} from "lucide-react";
+import { ArrowRight, Play, Bot, Gauge, Users, Megaphone, Mail, ShieldCheck, Sparkles, Search, FileText, ClipboardCheck, Video, ListOrdered, Plus, Minus, Quote,Clock,Phone,CircleX ,Zap} from "lucide-react";
 import logo from "@/assets/logo_HR.png";
 import heroImg from "@/assets/hero_recruiter_leader.jpg"
 import corePlatform from "@/assets/candidhr_core_platform.mp4"
 import howWorks from "@/assets/candidhr_how_it_works.mp4"
 import walkThrough from "@/assets/candidhr_applicants_walkthrough.mp4"
-import { LOGOS, ATS, BOARDS, RESULTS, TEAMS, PLANS, FAQ } from "./data";
+import { LOGOS, ATS, BOARDS, RESULTS, TEAMS, FAQ } from "./data";
 import { Button } from "../ui/button";
+import { Nav } from "@/components/site/Nav";
+import { Footer } from "@/components/site/Footer";
 
 const HERO_IMG = heroImg;
 
-function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
+export function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const el = ref.current;
@@ -22,7 +24,7 @@ function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; 
   return <div ref={ref} className={`reveal ${className}`} style={{ transitionDelay: `${delay}s` }}>{children}</div>;
 }
 
-function Btn({ children, variant = "primary", href = "#demo" }: { children: ReactNode; variant?: "primary" | "ghost" | "ink"; href?: string }) {
+export function Btn({ children, variant = "primary", href = "/book-a-demo" }: { children: ReactNode; variant?: "primary" | "ghost" | "ink"; href?: string }) {
   const v = {
     primary: "bg-primary text-primary-foreground shadow-violet hover:-translate-y-0.5",
     ghost: "bg-card text-ink border border-border hover:border-violet hover:-translate-y-0.5",
@@ -38,22 +40,6 @@ function Head({ eyebrow, title, lead, center }: { eyebrow: string; title: ReactN
       <h2 className="mt-4 text-4xl font-extrabold leading-[1.08] text-ink md:text-5xl">{title}</h2>
       {lead && <p className="mt-4 text-[17px] leading-relaxed text-muted-foreground">{lead}</p>}
     </Reveal>
-  );
-}
-
-function Nav() {
-  return (
-    <header className="sticky top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-xl">
-      <div className="mx-auto flex h-[72px] max-w-[1240px] items-center justify-between px-6">
-        <a href="#" className="flex items-center gap-2 text-xl font-extrabold tracking-tight text-ink"><img src={logo} alt="" className="h-8 w-auto" />CandidHR<span className="text-violet">.ai</span></a>
-        <nav className="hidden gap-8 text-[14.5px] font-semibold text-ink md:flex">
-          {["Platform", "How it works", "Results", "Integrations", "Pricing", "FAQ"].map((l) => (
-            <a key={l} href={`#${l.toLowerCase().replace(/ /g, "-")}`} className="transition-colors hover:text-violet">{l}</a>
-          ))}
-        </nav>
-        <a href="#demo" className="inline-flex h-10 items-center rounded-full bg-ink px-5 text-sm font-bold text-ink-foreground">Book a demo</a>
-      </div>
-    </header>
   );
 }
 
@@ -235,7 +221,7 @@ export function HowItWorks() {
             <div className="workflow-auto-summary"><div className="workflow-bar workflow-auto-bar"><span /><span /><span /></div><div className="workflow-legend"><p><span className="workflow-key team-key" />Your team · 2 steps</p><p><span className="workflow-key auto-key" />Automated · 5 steps</p></div></div>
           </div>
         </div>
-        <div className="mt-8 flex justify-center"><Button asChild className="h-auto min-h-12 whitespace-normal rounded-full px-6 py-3 text-center text-[15px] font-bold shadow-violet"><a href="#demo">See it on one of your own jobs <ArrowRight aria-hidden="true" /></a></Button></div>
+        <div className="mt-8 flex justify-center"><Button asChild className="h-auto min-h-12 whitespace-normal rounded-full px-6 py-3 text-center text-[15px] font-bold shadow-violet"><a href="/book-a-demo">See it on one of your own jobs <ArrowRight aria-hidden="true" /></a></Button></div>
       </div>
     </section>
   );
@@ -480,7 +466,7 @@ function Cta() {
           <p className="mx-auto mt-4 max-w-xl text-muted-foreground">From the founder: recruiter time should go to the conversations that decide a hire — not the noise before them.</p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <Btn>Book a demo <ArrowRight className="h-4 w-4" /></Btn>
-            <Btn variant="ghost" href="#pricing">Start free</Btn>
+            <Btn variant="ghost" href="/book-a-demo">Start free</Btn>
           </div>
         </div>
       </div>
@@ -644,39 +630,6 @@ function JobToShortlist() {
         </div>
       </div>
     </section>
-  );
-}
-
-function Footer() {
-  const cols = [
-    { h: "Product", l: [["Platform", "#platform"], ["How it works", "#how-it-works"], ["Integrations", "#integrations"], ["Pricing", "#pricing"]] },
-    { h: "Company", l: [["Customer results", "#results"], ["FAQ", "#faq"], ["Book a demo", "#demo"]] },
-    { h: "Connect", l: [["YouTube", "https://youtube.com/@CandidHR.AIOfficial"], ["info@candidhr.ai", "mailto:info@candidhr.ai"]] },
-  ];
-  return (
-    <footer className="border-t border-border bg-surface">
-      <div className="mx-auto grid max-w-[1240px] gap-10 px-6 py-16 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
-        <div>
-          <a href="#" className="flex items-center gap-2 text-xl font-extrabold text-ink"><img src={logo.url} alt="" className="h-8 w-auto" />CandidHR<span className="text-violet">.ai</span></a>
-          <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted-foreground">AI recruitment software that sources, screens, assesses and interviews candidates before your first round.</p>
-          <div className="mt-5 inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1.5 text-xs font-semibold text-ink"><ShieldCheck className="h-4 w-4 text-teal" /> SOC 2 Type II certified</div>
-        </div>
-        {cols.map((c) => (
-          <div key={c.h}>
-            <div className="text-xs font-bold uppercase tracking-widest text-ink">{c.h}</div>
-            <ul className="mt-4 space-y-3 text-sm">
-              {c.l.map(([t, h]) => <li key={t}><a href={h} className="flex items-center gap-2 text-muted-foreground transition hover:text-violet" {...(h!.startsWith("http") ? { target: "_blank", rel: "noopener" } : {})}>{h!.startsWith("mailto") ? <Mail className="h-4 w-4" /> : h!.startsWith("http") ? <Link2 className="h-4 w-4" /> : null}{t}</a></li>)}
-            </ul>
-          </div>
-        ))}
-      </div>
-      <div className="border-t border-border">
-        <div className="mx-auto flex max-w-[1240px] flex-wrap justify-between gap-3 px-6 py-6 text-xs text-muted-foreground">
-          <span>© {new Date().getFullYear()} Diacto Labs Private Limited. All rights reserved.</span>
-          <span>Made for hiring teams with more applicants than time.</span>
-        </div>
-      </div>
-    </footer>
   );
 }
 
