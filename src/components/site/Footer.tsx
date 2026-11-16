@@ -7,15 +7,16 @@ const COLUMNS: { h: string; l: [string, string][] }[] = [
     h: "Product",
     l: [
       ["Platform", "/platform"],
-      ["How it works", "/#how-it-works"],
+      ["How it works", "/how-it-works"],
       ["Integrations", "/#integrations"],
+      ["Pricing", "/pricing"],
     ],
   },
   {
     h: "Company",
     l: [
       ["Customer results", "/#results"],
-      ["FAQ", "/#faq"],
+      ["FAQ", "/faq"],
       ["Book a demo", "/book-a-demo"],
     ],
   },

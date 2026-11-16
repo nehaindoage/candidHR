@@ -466,7 +466,7 @@ function Cta() {
           <p className="mx-auto mt-4 max-w-xl text-muted-foreground">From the founder: recruiter time should go to the conversations that decide a hire — not the noise before them.</p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <Btn>Book a demo <ArrowRight className="h-4 w-4" /></Btn>
-            <Btn variant="ghost" href="/book-a-demo">Start free</Btn>
+            <Btn variant="ghost" href="/pricing">Start free</Btn>
           </div>
         </div>
       </div>

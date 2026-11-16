@@ -4,7 +4,7 @@ import { BookDemoPage } from "@/components/demo/BookDemoPage";
 export const Route = createFileRoute("/book-a-demo")({
   head: () => ({
     meta: [
-      { title: "Book a demo — see CandidHR.ai on your own roles" },
+      { title: "Book a demo - see CandidHR.ai on your own roles" },
       {
         name: "description",
         content:

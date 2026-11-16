@@ -4,7 +4,7 @@ import { PlatformPage } from "@/components/platform/PlatformPage";
 export const Route = createFileRoute("/platform")({
   head: () => ({
     meta: [
-      { title: "Platform — AI sourcing, screening, assessments & interviews | CandidHR.ai" },
+      { title: "Platform - AI sourcing, screening, assessments & interviews | CandidHR.ai" },
       {
         name: "description",
         content:

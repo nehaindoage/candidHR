@@ -20,27 +20,8 @@ import heroImg from "@/assets/hero_recruiter_leader.jpg";
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
 import { Btn, Reveal } from "@/components/landing/Landing";
-import { useEffect, useRef, useState, type ReactNode } from "react";
-
-function SectionHead({
-  eyebrow,
-  title,
-  lead,
-  center,
-}: {
-  eyebrow: string;
-  title: ReactNode;
-  lead?: string;
-  center?: boolean;
-}) {
-  return (
-    <Reveal className={`mb-14 max-w-2xl ${center ? "mx-auto text-center" : ""}`}>
-      <span className="eyebrow">{eyebrow}</span>
-      <h2 className="mt-4 text-4xl font-extrabold leading-[1.08] text-ink md:text-5xl">{title}</h2>
-      {lead && <p className="mt-4 text-[17px] leading-relaxed text-muted-foreground">{lead}</p>}
-    </Reveal>
-  );
-}
+import { useEffect, useRef, useState } from "react";
+import { SectionHead } from "@/components/site/SectionHead";
 
 function Hero() {
   return (
@@ -493,7 +474,7 @@ function Cta() {
             <Btn>
               Book a demo <ArrowRight className="h-4 w-4" />
             </Btn>
-            <Btn variant="ghost" href="/#how-it-works">
+            <Btn variant="ghost" href="/how-it-works">
               See how it works
             </Btn>
           </div>
