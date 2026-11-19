@@ -6,8 +6,9 @@ import { SignInDialog } from "@/components/site/SignInDialog";
 const LINKS = [
   { label: "Platform", to: "/platform" as const },
   { label: "How it works", to: "/how-it-works" as const },
-  { label: "Results", to: "/" as const, hash: "results" },
-  { label: "Integrations", to: "/" as const, hash: "integrations" },
+  { label: "Solutions", to: "/solutions" as const },
+  // { label: "Results", to: "/" as const, hash: "results" },
+  // { label: "Integrations", to: "/" as const, hash: "integrations" },
   { label: "Pricing", to: "/pricing" as const },
   { label: "FAQ", to: "/faq" as const },
 ];

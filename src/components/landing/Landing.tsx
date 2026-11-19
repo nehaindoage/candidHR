@@ -139,18 +139,34 @@ function Hero() {
 function LogoRow({ items, reverse, dur }: { items: typeof LOGOS; reverse?: boolean; dur: number }) {
   const set = (hidden?: boolean) => (
     <div className={`marquee-track ${reverse ? "reverse" : ""}`} style={{ ["--dur" as string]: `${dur}s` }} aria-hidden={hidden}>
-      {items.map((l) => (
-        <div key={l.n} className="flex h-20 w-48 shrink-0 items-center justify-center rounded-2xl border border-border bg-card px-6">
-          <img src={l.s} alt={hidden ? "" : l.n} loading="lazy" className="max-h-10 max-w-full object-contain" />
-        </div>
-      ))}
+      {[0, 1].map((copy) =>
+        items.map((l) => (
+          <div
+            key={`${l.n}-${copy}`}
+            className="flex h-28 w-64 shrink-0 items-center justify-center rounded-2xl border border-border bg-card px-8"
+          >
+            <img
+              src={l.s}
+              alt={hidden ? "" : l.n}
+              loading="eager"
+              decoding="async"
+              draggable={false}
+              className="max-h-20 max-w-full object-contain"
+            />
+          </div>
+        )),
+      )}
     </div>
   );
-  return <div className="marquee">{set()}{set(true)}</div>;
+  return (
+    <div className="marquee">
+      {set()}
+      {set(true)}
+    </div>
+  );
 }
 
 function Logos() {
-  const rot = (n: number) => [...LOGOS.slice(n), ...LOGOS.slice(0, n)];
   return (
     <section className="py-20">
       <Reveal className="mx-auto mb-10 max-w-[1240px] px-6 text-center">
@@ -158,9 +174,8 @@ function Logos() {
         <p className="mt-3 text-2xl font-bold text-ink">Recruiters at growing companies already hire this way</p>
       </Reveal>
       <div className="space-y-4">
-        <LogoRow items={rot(0)} dur={45} />
-        <LogoRow items={rot(5)} dur={55} reverse />
-       
+        <LogoRow items={LOGOS.slice(0, 8)} dur={45} />
+        <LogoRow items={LOGOS.slice(8, 16)} dur={55} reverse />
       </div>
     </section>
   );
