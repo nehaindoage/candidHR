@@ -9,7 +9,7 @@ const LINKS = [
   { label: "Solutions", to: "/solutions" as const },
   // { label: "Results", to: "/" as const, hash: "results" },
   // { label: "Integrations", to: "/" as const, hash: "integrations" },
-  { label: "Pricing", to: "/pricing" as const },
+  // { label: "Pricing", to: "/pricing" as const },
   { label: "FAQ", to: "/faq" as const },
 ];
 

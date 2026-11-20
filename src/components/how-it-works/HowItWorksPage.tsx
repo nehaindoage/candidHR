@@ -9,6 +9,7 @@ import {
   Users,
   Video,
   Zap,
+  MessageSquare,
   type LucideIcon,
 } from "lucide-react";
 import howItWorksVideo from "@/assets/candidhr_how_it_works.mp4";
@@ -75,6 +76,14 @@ const STEPS: {
     owner: "team",
     outcome: "Hire-ready candidates your managers trust",
   },
+  {
+  icon: MessageSquare,
+  t: "Candidate communication automation",
+  d: "Keep candidates informed at every stage with automated emails and notifications for application updates, assessment invitations, interview scheduling and status changes.",
+  owner: "auto",
+  outcome: "Timely, consistent communication with every candidate"
+},
+  
 ];
 
 const OWNER_STYLES: Record<Owner, { label: string; className: string; icon: LucideIcon }> = {
